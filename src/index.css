@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --fxair-orange: #E85D04;
+  --fxair-blue: #1D4ED8;
+  --fxair-yellow: #FBBF24;
+  --fxair-gray: #374151;
+  --fxair-gray-dark: #1F2937;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans text-fxair-gray-dark antialiased;
+}
+
+.font-display {
+  font-family: 'Syne', system-ui, sans-serif;
+}
