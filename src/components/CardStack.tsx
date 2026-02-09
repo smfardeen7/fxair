@@ -1,15 +1,45 @@
+import { useEffect, useRef, useState } from 'react'
+
 const CARD_COUNT = 10
 const FAN_START = -22
 const FAN_END = 22
 
 export default function CardStack() {
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  const [runId, setRunId] = useState(0)
+  const wasInView = useRef(false)
+
+  useEffect(() => {
+    const el = wrapperRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const nowInView = entry.isIntersecting
+          if (nowInView && !wasInView.current) setRunId((r) => r + 1)
+          wasInView.current = nowInView
+          setInView(nowInView)
+        })
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -80px 0px' }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className="relative w-full flex justify-center items-center min-h-[200px] lg:min-h-[260px] py-6">
+    <div
+      ref={wrapperRef}
+      className="relative w-full flex justify-center items-center min-h-[200px] lg:min-h-[260px] py-6"
+    >
       <style>{`
         @keyframes card-come-out {
           from {
             transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
-            opacity: 0.6;
+            opacity: 0.5;
           }
           to {
             transform: translate(-50%, -50%) translate(var(--mx), var(--my)) rotate(var(--rot));
@@ -21,14 +51,24 @@ export default function CardStack() {
           50% { transform: translateY(-6px); }
         }
         .card-stack-card {
-          animation: card-come-out 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-          opacity: 0.6;
+          transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
+          opacity: 0.5;
+          transition: none;
         }
-        .card-stack-wrapper {
+        .card-stack-section-in-view .card-stack-card {
+          animation: card-come-out 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .card-stack-section-in-view .card-stack-wrapper {
           animation: stack-float 5s ease-in-out infinite;
         }
+        .card-stack-wrapper {
+          transition: transform 0.3s ease-out;
+        }
       `}</style>
-      <div className="card-stack-wrapper relative w-[260px] h-[170px] lg:w-[300px] lg:h-[190px]">
+      <div
+        key={runId}
+        className={`card-stack-wrapper relative w-[260px] h-[170px] lg:w-[300px] lg:h-[190px] ${inView ? 'card-stack-section-in-view' : ''}`}
+      >
         {Array.from({ length: CARD_COUNT }).map((_, i) => {
           const t = i / Math.max(CARD_COUNT - 1, 1)
           const rotation = FAN_START + t * (FAN_END - FAN_START)
@@ -46,7 +86,7 @@ export default function CardStack() {
                 '--rot': `${rotation}deg`,
                 '--mx': `${mx}px`,
                 '--my': `${my}px`,
-                animationDelay: `${i * 0.06}s`,
+                animationDelay: inView ? `${i * 0.12}s` : '0s',
               } as React.CSSProperties}
             >
               <div
