@@ -21,7 +21,7 @@ export default function Founder() {
           </div>
           <div className="text-center md:text-left">
             <h3 className="font-display text-2xl font-bold text-white mb-1">
-              [Founder Name]
+              Shaik Mohammad Fardeen
             </h3>
             <p className="text-fxair-purple-light font-medium mb-4">
               Founder & CEO
