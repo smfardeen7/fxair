@@ -2,6 +2,8 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
 import About from './components/About'
+import CardStack from './components/CardStack'
+import Founder from './components/Founder'
 import Stats from './components/Stats'
 import Features from './components/Features'
 import HowItWorks from './components/HowItWorks'
@@ -20,6 +22,10 @@ function App() {
         <Hero />
         <TrustBar />
         <About />
+        <section className="py-20 lg:py-28 bg-black" aria-label="Card stack">
+          <CardStack />
+        </section>
+        <Founder />
         <Stats />
         <Features />
         <HowItWorks />

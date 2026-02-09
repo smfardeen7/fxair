@@ -21,13 +21,13 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 lg:py-28 bg-gray-50/50">
+    <section className="py-20 lg:py-28 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-fxair-orange font-semibold text-sm uppercase tracking-wider mb-3">
+          <p className="text-fxair-purple font-semibold text-sm uppercase tracking-wider mb-3">
             Testimonials
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-fxair-gray-dark mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
             What our customers say about us
           </h2>
         </div>
@@ -36,12 +36,12 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <div
               key={t.handle}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col"
+              className="bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-800 flex flex-col"
             >
-              <p className="text-fxair-gray flex-1 leading-relaxed">"{t.quote}"</p>
-              <div className="mt-6 pt-4 border-t border-gray-100">
-                <p className="font-semibold text-fxair-gray-dark">{t.author}</p>
-                <p className="text-sm text-fxair-gray">{t.handle}</p>
+              <p className="text-gray-400 flex-1 leading-relaxed">"{t.quote}"</p>
+              <div className="mt-6 pt-4 border-t border-gray-700">
+                <p className="font-semibold text-white">{t.author}</p>
+                <p className="text-sm text-gray-500">{t.handle}</p>
               </div>
             </div>
           ))}

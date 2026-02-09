@@ -3,19 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --fxair-orange: #E85D04;
-  --fxair-blue: #1D4ED8;
-  --fxair-yellow: #FBBF24;
+  --fxair-purple-dark: #2d1b4e;
+  --fxair-purple: #6d28d9;
+  --fxair-purple-light: #8b5cf6;
   --fxair-gray: #374151;
   --fxair-gray-dark: #1F2937;
 }
 
 html {
   scroll-behavior: smooth;
+  @apply bg-black;
 }
 
 body {
-  @apply font-sans text-fxair-gray-dark antialiased;
+  @apply font-sans text-gray-200 antialiased bg-black;
 }
 
 .font-display {

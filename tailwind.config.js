@@ -5,12 +5,12 @@ export default {
     extend: {
       colors: {
         fxair: {
-          orange: '#E85D04',
-          'orange-light': '#F97316',
-          blue: '#1D4ED8',
-          'blue-light': '#2563EB',
-          yellow: '#FBBF24',
-          'gray': '#374151',
+          'purple-dark': '#2d1b4e',
+          'purple-darker': '#1f1335',
+          purple: '#6d28d9',
+          'purple-light': '#8b5cf6',
+          'purple-bright': '#a78bfa',
+          gray: '#374151',
           'gray-dark': '#1F2937',
         },
       },

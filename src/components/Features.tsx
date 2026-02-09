@@ -55,16 +55,16 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-20 lg:py-28 bg-gray-50/50">
+    <section id="features" className="py-20 lg:py-28 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-fxair-orange font-semibold text-sm uppercase tracking-wider mb-3">
+          <p className="text-fxair-purple font-semibold text-sm uppercase tracking-wider mb-3">
             Core features
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-fxair-gray-dark mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
             Built for direct, bank-backed transfers
           </h2>
-          <p className="text-fxair-gray">
+          <p className="text-gray-400">
             One flow: your details, your bank’s approval, our conversion. No third parties.
           </p>
         </div>
@@ -73,15 +73,15 @@ export default function Features() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-fxair-blue/20 transition-all"
+              className="bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-800 hover:border-fxair-purple/40 transition-all"
             >
-              <div className="w-12 h-12 rounded-xl bg-fxair-blue/10 text-fxair-blue flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-xl bg-fxair-purple/10 text-fxair-purple flex items-center justify-center mb-4">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {feature.icon}
                 </svg>
               </div>
-              <h3 className="font-display font-semibold text-fxair-gray-dark mb-2">{feature.title}</h3>
-              <p className="text-sm text-fxair-gray leading-relaxed">{feature.description}</p>
+              <h3 className="font-display font-semibold text-white mb-2">{feature.title}</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>
