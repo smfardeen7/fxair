@@ -1,9 +1,14 @@
+import { Link } from 'react-router-dom'
 import Globe from './Globe'
+import TransactionStatusSnippet from './TransactionStatusSnippet'
+import { useAuth } from '../contexts/AuthContext'
 
 const ANIMATED_CARDS = [
   {
     title: 'Direct bank link',
     description: 'Connect your account once. Your bank approves every transfer.',
+    cta: 'Link your bank',
+    to: '/direct-bank-link',
     icon: (
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
     ),
@@ -11,6 +16,7 @@ const ANIMATED_CARDS = [
   {
     title: 'One approval',
     description: 'You request, your bank approves. No third-party in between.',
+    statusCard: true,
     icon: (
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
     ),
@@ -18,6 +24,8 @@ const ANIMATED_CARDS = [
   {
     title: 'We convert',
     description: 'We handle the currency conversion at a clear, fair rate.',
+    cta: 'See live rates',
+    to: '/rates',
     icon: (
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
     ),
@@ -25,6 +33,7 @@ const ANIMATED_CARDS = [
 ]
 
 export default function Hero() {
+  const { token } = useAuth()
   return (
     <section id="home" className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
       <style>{`
@@ -53,20 +62,49 @@ export default function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Animated cards at the start */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 mb-12 lg:mb-16">
-          {ANIMATED_CARDS.map((card) => (
-            <div
-              key={card.title}
-              className="hero-card rounded-2xl bg-gray-900/80 border border-gray-800 p-5 lg:p-6 backdrop-blur-sm transition-all duration-300 hover:border-fxair-purple/50 hover:shadow-lg hover:shadow-fxair-purple/10 hover:-translate-y-1"
-            >
-              <div className="w-11 h-11 rounded-xl bg-fxair-purple/20 text-fxair-purple-light flex items-center justify-center mb-4">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {card.icon}
-                </svg>
+          {ANIMATED_CARDS.map((card) => {
+            const isStatusCard = 'statusCard' in card && card.statusCard
+            const cardContent = (
+              <>
+                <div className="w-11 h-11 rounded-xl bg-fxair-purple/20 text-fxair-purple-light flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {card.icon}
+                  </svg>
+                </div>
+                <h3 className="font-display font-semibold text-white mb-2">{card.title}</h3>
+                {isStatusCard ? (
+                  <TransactionStatusSnippet />
+                ) : (
+                  <>
+                    <p className="text-sm text-gray-400 leading-relaxed mb-3">{card.description}</p>
+                    {'cta' in card && card.cta && (
+                      <span className="inline-flex items-center gap-1.5 text-sm font-medium text-fxair-purple-light group-hover:gap-2 transition-all">
+                        {card.cta}
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
+                    )}
+                  </>
+                )}
+              </>
+            )
+            const className = "hero-card rounded-2xl bg-gray-900/80 border border-gray-800 p-5 lg:p-6 backdrop-blur-sm transition-all duration-300 hover:border-fxair-purple/50 hover:shadow-lg hover:shadow-fxair-purple/10 hover:-translate-y-1"
+            const linkTo = (isStatusCard && token) ? '/transactions' : 'to' in card && card.to ? card.to : null
+            return linkTo ? (
+              <Link
+                key={card.title}
+                to={linkTo}
+                className={`${className} block group`}
+              >
+                {cardContent}
+              </Link>
+            ) : (
+              <div key={card.title} className={className}>
+                {cardContent}
               </div>
-              <h3 className="font-display font-semibold text-white mb-2">{card.title}</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">{card.description}</p>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -83,21 +121,22 @@ export default function Hero() {
               currency conversion—so you get more of your money where it needs to go.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a
-                href="#open-account"
+              <Link
+                to="/open-account"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-fxair-purple text-white font-semibold hover:bg-fxair-purple-light transition-colors shadow-lg shadow-fxair-purple/25"
               >
                 Open Account
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
-              <a
-                href="#how-it-works"
+              </Link>
+              <Link
+                to="/"
+                state={{ scrollTo: 'how-it-works' }}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border-2 border-gray-600 text-gray-200 font-semibold hover:border-fxair-purple-light hover:text-fxair-purple-light transition-colors"
               >
                 How it works
-              </a>
+              </Link>
             </div>
           </div>
 

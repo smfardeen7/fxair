@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const plans = [
   {
     name: 'Starter',
@@ -87,8 +89,8 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="#open-account"
+              <Link
+                to="/open-account"
                 className={`block text-center py-3 rounded-xl font-semibold transition-colors ${
                   plan.highlighted
                     ? 'bg-white text-fxair-purple hover:bg-gray-100'
@@ -96,7 +98,7 @@ export default function Pricing() {
                 }`}
               >
                 {plan.cta}
-              </a>
+              </Link>
             </div>
           ))}
         </div>

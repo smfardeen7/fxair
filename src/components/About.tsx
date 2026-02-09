@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function About() {
   return (
     <section id="about" className="py-20 lg:py-28 bg-black">
@@ -16,15 +18,15 @@ export default function About() {
             <p className="text-gray-400 leading-relaxed mb-8">
               You get one request, one approval from your bank, and one conversion. That’s it.
             </p>
-            <a
-              href="#open-account"
+            <Link
+              to="/open-account"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-fxair-purple text-white font-semibold hover:bg-fxair-purple-light transition-colors"
             >
               Open Account
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
           </div>
           <div className="relative">
             <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-fxair-purple/10 to-fxair-purple-light/10 flex items-center justify-center">
