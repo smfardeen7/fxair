@@ -20,7 +20,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           <a href="#home" className="flex items-center gap-2 shrink-0">
             {!logoError ? (
-              <img src="/logo.png" alt="FX AIR - Conversions that feel effortless" className="h-10 sm:h-11 w-auto" onError={() => setLogoError(true)} />
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="FX AIR - Conversions that feel effortless" className="h-20 sm:h-21 w-auto" onError={() => setLogoError(true)} />
             ) : (
               <span className="font-display font-bold text-xl sm:text-2xl">
                 <span className="text-white">FX</span>

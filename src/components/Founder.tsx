@@ -14,7 +14,7 @@ export default function Founder() {
         <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
           <div className="shrink-0">
             <img
-              src="/founder.png"
+              src={`${import.meta.env.BASE_URL}founder.png`}
               alt="Founder of FX AIR"
               className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl object-cover border-2 border-gray-800 shadow-xl"
             />

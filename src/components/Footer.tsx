@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div className="col-span-2 md:col-span-1">
             <a href="#home" className="inline-block mb-4">
-              <img src="/logo.png" alt="FX AIR - Conversions that feel effortless" className="h-9 w-auto" />
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="FX AIR - Conversions that feel effortless" className="h-9 w-auto" />
             </a>
             <p className="text-sm text-gray-400 max-w-xs">
               Conversions that feel effortless. Direct bank transfers without third-party markup.

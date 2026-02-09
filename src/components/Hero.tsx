@@ -53,7 +53,7 @@ export default function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Animated cards at the start */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 mb-12 lg:mb-16">
-          {ANIMATED_CARDS.map((card, i) => (
+          {ANIMATED_CARDS.map((card) => (
             <div
               key={card.title}
               className="hero-card rounded-2xl bg-gray-900/80 border border-gray-800 p-5 lg:p-6 backdrop-blur-sm transition-all duration-300 hover:border-fxair-purple/50 hover:shadow-lg hover:shadow-fxair-purple/10 hover:-translate-y-1"
