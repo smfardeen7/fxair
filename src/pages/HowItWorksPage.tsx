@@ -56,7 +56,7 @@ export default function HowItWorksPage() {
         </div>
 
         <div className="space-y-10">
-          {steps.map((item, i) => (
+          {steps.map((item) => (
             <div
               key={item.step}
               className="rounded-2xl border border-gray-800 bg-gray-900/50 p-8 sm:p-10 relative overflow-hidden"
