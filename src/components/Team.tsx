@@ -13,6 +13,12 @@ const team = [
     initials: 'KL',
   },
   {
+    name: 'Hyndavi Chitraju',
+    role: 'Product & Operations',
+    bio: 'Helps keep every cross-border transfer flowing smoothly for our customers.',
+    initials: 'HC',
+  },
+  {
     name: 'Kishore Reddy',
     role: 'Head of Compliance',
     bio: 'Keeping your money safe and our operations transparent.',
@@ -36,7 +42,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {team.map((member) => (
             <div
               key={member.name}
